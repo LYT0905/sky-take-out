@@ -1,9 +1,12 @@
 package com.sky.mapper;
 
+import com.github.pagehelper.Page;
 import com.sky.anotation.AutoFill;
+import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.entity.DishFlavor;
 import com.sky.enumeration.OperationType;
+import com.sky.vo.DishVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -24,4 +27,11 @@ public interface DishMapper {
     void insert(Dish dish);
 
     void insertBatch(List<DishFlavor> flavors);
+
+    /**
+     * 菜品分页功能
+     * @param queryDTO
+     * @return
+     */
+    Page<DishVO> pageQuery(DishPageQueryDTO queryDTO);
 }

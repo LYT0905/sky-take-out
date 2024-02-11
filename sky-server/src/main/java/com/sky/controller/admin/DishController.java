@@ -7,6 +7,7 @@ import com.sky.result.Result;
 import com.sky.service.DishService;
 import com.sky.vo.DishVO;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,6 +56,19 @@ public class DishController {
     @ApiOperation("批量删除菜品功能")
     public Result<String> delete(@RequestParam List<Integer> ids){
         dishService.deleteBatch(ids);
+        return Result.success();
+    }
+
+    /**
+     * 对菜品进行起售禁售
+     * @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("停售起售菜品")
+    public Result<String> startOrStop(@PathVariable Integer status, Long id){
+        dishService.startOrStop(status, id);
         return Result.success();
     }
 }

@@ -70,6 +70,10 @@ public class DishServiceImpl implements DishService {
         return new PageResult(page.getTotal(), page.getResult());
     }
 
+    /**
+     * 批量删除菜品
+     * @param ids
+     */
     @Override
     public void deleteBatch(List<Integer> ids) {
         for (Integer id : ids) {
@@ -87,5 +91,16 @@ public class DishServiceImpl implements DishService {
         // 对菜品进行删除
         dishMapper.deleteBatch(ids);
         dishFlavorMapper.deleteBatch(ids);
+    }
+
+    /**
+     * 对菜品进行起售禁售
+     * @param status
+     * @param id
+     */
+    @Override
+    public void startOrStop(Integer status, Long id) {
+        Dish dish = Dish.builder().id(id).status(status).build();
+        dishMapper.update(dish);
     }
 }

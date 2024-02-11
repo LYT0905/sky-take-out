@@ -11,5 +11,9 @@ import java.util.List;
 
 @Mapper
 public interface DishFlavorMapper {
+    /**
+     * 批量删除
+     * @param dishIds
+     */
     void deleteBatch(List<Integer> dishIds);
 }

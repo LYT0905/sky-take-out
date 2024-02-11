@@ -25,6 +25,9 @@
             <if test="price != null">
                 price = #{price},
             </if>
+            <if test="image != null">
+                image = #{image},
+            </if>
             <if test="description != null">
                 description = #{description},
             </if>

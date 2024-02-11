@@ -54,7 +54,7 @@ public class DishController {
      */
     @DeleteMapping
     @ApiOperation("批量删除菜品功能")
-    public Result<String> delete(@RequestParam List<Integer> ids){
+    public Result<String> delete(@RequestParam List<Long> ids){
         dishService.deleteBatch(ids);
         return Result.success();
     }
@@ -69,6 +69,29 @@ public class DishController {
     @ApiOperation("停售起售菜品")
     public Result<String> startOrStop(@PathVariable Integer status, Long id){
         dishService.startOrStop(status, id);
+        return Result.success();
+    }
+
+    /**
+     * 根据id查询菜品和相关联的口味数据
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    @ApiOperation("根据id查询菜品和相关联的口味数据")
+    public Result<DishVO> getById(@PathVariable Long id){
+        return Result.success(dishService.getByIdWithFlavor(id));
+    }
+
+    /**
+     * 修改菜品信息
+     * @param dishDTO
+     * @return
+     */
+    @PutMapping
+    @ApiOperation("修改菜品信息")
+    public Result update(@RequestBody DishDTO dishDTO){
+        dishService.updateWithFlavor(dishDTO);
         return Result.success();
     }
 }

@@ -26,7 +26,6 @@ public interface DishMapper {
     @AutoFill(OperationType.INSERT)
     void insert(Dish dish);
 
-    @AutoFill(OperationType.INSERT)
     void insertBatch(List<DishFlavor> flavors);
 
     /**
@@ -42,13 +41,13 @@ public interface DishMapper {
      * @return
      */
     @Select("select * from dish where id = #{id};")
-    Dish getById(Integer id);
+    Dish getById(Long id);
 
     /**
      * 批量删除
      * @param dishIds
      */
-    void deleteBatch(List<Integer> dishIds);
+    void deleteBatch(List<Long> dishIds);
 
     @AutoFill(OperationType.UPDATE)
     void update(Dish dish);

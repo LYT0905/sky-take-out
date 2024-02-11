@@ -10,6 +10,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author Mark
  * @date 2024/2/10
@@ -42,5 +44,17 @@ public class DishController {
     public Result<PageResult> page(DishPageQueryDTO queryDTO){
         PageResult pageResult = dishService.page(queryDTO);
         return Result.success(pageResult);
+    }
+
+    /**
+     * 批量删除菜品
+     * @param ids
+     * @return
+     */
+    @DeleteMapping
+    @ApiOperation("批量删除菜品功能")
+    public Result<String> delete(@RequestParam List<Integer> ids){
+        dishService.deleteBatch(ids);
+        return Result.success();
     }
 }

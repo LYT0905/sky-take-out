@@ -29,4 +29,11 @@
         order by d.create_time desc
     </select>
 
+    <delete id="deleteBatch">
+        delete from dish where id =
+        <foreach collection="dishIds" open="(" close=")" item="dishId">
+            #{dishId}
+        </foreach>
+    </delete>
+
 </mapper>

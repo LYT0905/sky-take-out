@@ -8,6 +8,7 @@ import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.entity.DishFlavor;
+import com.sky.entity.SetmealDish;
 import com.sky.exception.DeletionNotAllowedException;
 import com.sky.mapper.DishFlavorMapper;
 import com.sky.mapper.DishMapper;
@@ -89,7 +90,7 @@ public class DishServiceImpl implements DishService {
             }
         }
         // 判断当前菜品是否关联了套餐
-        List<Long> setmealIds = setMealDishMapper.getSetmealsByDishIds(ids);
+        List<SetmealDish> setmealIds = setMealDishMapper.getSetmealsByDishIds(ids);
         if (setmealIds != null && setmealIds.size() > 0){
             throw new DeletionNotAllowedException(MessageConstant.DISH_BE_RELATED_BY_SETMEAL);
         }

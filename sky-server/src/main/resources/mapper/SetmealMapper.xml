@@ -30,20 +30,12 @@
         values (#{categoryId}, #{name}, #{price}, #{status}, #{description}, #{image}, #{createTime}, #{updateTime},
                 #{createUser}, #{updateUser})
     </insert>
-    <insert id="insertBatch">
-        insert into setmeal_dish
-            (setmeal_id,dish_id,name,price,copies)
-        values
-            <foreach collection="setmealDishes" item="sd" separator=",">
-                (#{sd.setmealId},#{sd.dishId},#{sd.name},#{sd.price},#{sd.copies})
-            </foreach>
-    </insert>
 
     <update id="update">
         update setmeal
         <set>
             <if test="categoryId != null">
-                categoryId = #{categoryId},
+                category_id = #{categoryId},
             </if>
             <if test="name != null">
                 name = #{name},

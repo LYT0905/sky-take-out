@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author Mark
  * @date 2024/2/12
@@ -55,6 +57,18 @@ public class SetmealController {
     @ApiOperation("套餐起售、停售")
     public Result<String> startOrStop(@PathVariable Integer status, Long id){
         setmealService.startOrStop(status, id);
+        return Result.success();
+    }
+
+    /**
+     * 批量删除套餐
+     * @param ids
+     * @return
+     */
+    @DeleteMapping
+    @ApiOperation("批量删除套餐")
+    public Result<String> delete(@RequestParam List<Long> ids){
+        setmealService.deleteBatch(ids);
         return Result.success();
     }
 }

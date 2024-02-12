@@ -7,4 +7,11 @@
             #{dishId}
         </foreach>
     </select>
+
+    <delete id="deleteBatch">
+        delete from setmeal_dish where id =
+        <foreach collection="ids" open="(" close=")" item="id">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>

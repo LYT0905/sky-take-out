@@ -45,4 +45,16 @@ public class SetmealController {
         setmealService.saveWithDish(setmealDTO);
         return Result.success();
     }
+
+    /**
+     * 套餐起售、停售
+     * @param status
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("套餐起售、停售")
+    public Result<String> startOrStop(@PathVariable Integer status, Long id){
+        setmealService.startOrStop(status, id);
+        return Result.success();
+    }
 }

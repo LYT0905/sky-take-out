@@ -198,4 +198,16 @@ public class OrderServiceImpl implements OrderService {
         }
         return new PageResult(page1.getTotal(), list);
     }
+
+    @Override
+    public OrderVO detail(Long id) {
+        Orders orders = ordersMapper.getById(id);
+
+        List<OrderDetail> orderDetailList = orderDetailMapper.getByOrderId(orders.getId());
+
+        OrderVO orderVO = new OrderVO();
+        BeanUtils.copyProperties(orders, orderVO);
+        orderVO.setOrderDetailList(orderDetailList);
+        return orderVO;
+    }
 }

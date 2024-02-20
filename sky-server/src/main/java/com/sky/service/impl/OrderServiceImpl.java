@@ -429,4 +429,25 @@ public class OrderServiceImpl implements OrderService {
 
         ordersMapper.update(orders);
     }
+
+    /**
+     * 完成订单
+     * @param id
+     */
+    @Override
+    public void complete(Long id) {
+        Orders ordersDB = ordersMapper.getById(id);
+
+        if (ordersDB == null || !ordersDB.getStatus().equals(Orders.DELIVERY_IN_PROGRESS)){
+            throw new OrderBusinessException(MessageConstant.ORDER_STATUS_ERROR);
+        }
+
+        Orders orders = new Orders();
+        orders.setId(ordersDB.getId());
+        // 更新订单状态,状态转为完成
+        orders.setDeliveryTime(LocalDateTime.now());
+        orders.setStatus(Orders.COMPLETED);
+
+        ordersMapper.update(orders);
+    }
 }

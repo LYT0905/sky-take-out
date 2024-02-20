@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * @date 2024/2/17
  */
 
-@RestController
+@RestController("userOrder")
 @RequestMapping("/user/order")
 @Api("订单接口")
 @Slf4j

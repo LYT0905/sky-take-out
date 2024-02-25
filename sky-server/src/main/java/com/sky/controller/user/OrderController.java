@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * @date 2024/2/17
  */
 
-@RestController
+@RestController("userOrder")
 @RequestMapping("/user/order")
 @Api("订单接口")
 @Slf4j
@@ -85,4 +85,29 @@ public class OrderController {
         orderService.cancelOrderById(id);
         return Result.success();
     }
+
+    /**
+     * 再来一单
+     * @param id
+     * @return
+     */
+    @PostMapping("/repetition/{id}")
+    @ApiOperation("再来一单")
+    public Result repetition(@PathVariable Long id){
+        orderService.repetition(id);
+        return Result.success();
+    }
+
+    /**
+     * 用户催单
+     * @param id
+     * @return
+     */
+    @GetMapping("/reminder/{id}")
+    @ApiOperation("用户催单")
+    public Result reminder(@PathVariable Long id){
+        orderService.reminder(id);
+        return Result.success();
+    }
+
 }

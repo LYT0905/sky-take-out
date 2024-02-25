@@ -116,7 +116,7 @@ public class OrderController {
      * @param id
      * @return
      */
-    @PutMapping("/compete/{id}")
+    @PutMapping("/complete/{id}")
     @ApiOperation("完成订单")
     public Result complete(@PathVariable Long id){
         orderService.complete(id);

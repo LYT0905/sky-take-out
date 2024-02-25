@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Mark
@@ -68,4 +69,11 @@ public interface OrdersMapper {
 
     @Select("select * from orders where number = #{number} and user_id = #{userId}")
     Orders getByNumberAndUserId(String number, Long userId);
+
+    /**
+     * 计算当天营业额
+     * @param map
+     * @return
+     */
+    Double sumByMap(Map<String, Object> map);
 }
